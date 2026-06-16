@@ -1,0 +1,15 @@
+{
+    "username": "leetcode",
+    "level": "Intermediate",
+    "week_1": [
+        "Merge Intervals",
+        "Course Schedule"
+    ],
+    "week_2": [
+        "Longest Substring Without Repeating Characters",
+        "Kth Largest Element in Array"
+    ],
+    "week_3": [
+        "Number of Islands"
+    ]
+}

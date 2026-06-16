@@ -38,6 +38,24 @@ features = pd.read_csv(
     "data/processed/leetcode_features.csv"
 )
 
+history = pd.read_csv(
+    "data/history/progress.csv"
+)
+
+try:
+    with open(
+        "data/processed/readiness_report.json",
+        "r"
+    ) as file:
+        readiness = json.load(file)
+
+except FileNotFoundError:
+
+    readiness = {
+        "readiness_score": 0,
+        "level": "Unavailable"
+    }
+
 
 # ==========================================
 # SIDEBAR
@@ -52,14 +70,16 @@ st.sidebar.markdown("---")
 st.sidebar.markdown(
     """
     ### Features
-    
+
     ✅ Skill Analysis
-    
+
     ✅ Problem Recommendations
-    
+
     ✅ Study Roadmap
-    
-    🔜 Rating Prediction (ML)
+
+    ✅ Progress Tracking
+
+    ✅ Interview Readiness Predictor
     """
 )
 
@@ -68,10 +88,12 @@ st.sidebar.markdown("---")
 st.sidebar.info(
     f"""
     Username: {profile['username']}
-    
+
     Level: {profile['level']}
-    
+
     Skill Score: {profile['skill_score']}
+
+    Readiness: {round(readiness['readiness_score'], 2)}
     """
 )
 
@@ -117,15 +139,70 @@ with col3:
 
 with col4:
     st.metric(
-        "Level",
-        profile["level"]
+        "Readiness",
+        f"{round(readiness['readiness_score'], 2)}/100"
     )
 
 st.divider()
 
+# ==========================================
+# INTERVIEW READINESS
+# ==========================================
+
+st.header("🤖 Interview Readiness")
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.metric(
+        "Readiness Score",
+        f"{round(readiness['readiness_score'], 2)}/100"
+    )
+
+with col2:
+
+    st.metric(
+        "Current Status",
+        readiness["level"]
+    )
+
+score = readiness["readiness_score"]
+
+st.progress(score / 100)
+
+st.write(
+    f"Interview Readiness: **{round(score, 2)}/100**"
+)
+
+if score >= 80:
+
+    st.success(
+        "Excellent! You are ready for most coding interviews."
+    )
+
+elif score >= 60:
+
+    st.info(
+        "You are close to interview-ready. Continue solving medium and hard problems."
+    )
+
+elif score >= 40:
+
+    st.warning(
+        "More practice is recommended before attempting major interviews."
+    )
+
+else:
+
+    st.error(
+        "Focus on strengthening your DSA fundamentals and solving more problems."
+    )
+
+st.divider()
 
 # ==========================================
-# SKILL SCORE PROGRESS
+# SKILL PROGRESS
 # ==========================================
 
 st.header("🎯 Skill Progress")
@@ -165,12 +242,20 @@ chart_df = pd.DataFrame(
     }
 )
 
-st.bar_chart(
-    chart_df.set_index("Difficulty")
-)
+col1, col2 = st.columns(2)
+
+with col1:
+    st.bar_chart(
+        chart_df.set_index("Difficulty")
+    )
+
+with col2:
+    st.dataframe(
+        chart_df,
+        width="stretch"
+    )
 
 st.divider()
-
 
 # ==========================================
 # STRENGTHS
@@ -197,7 +282,7 @@ st.divider()
 
 
 # ==========================================
-# RECOMMENDATIONS
+# RECOMMENDED PROBLEMS
 # ==========================================
 
 st.header("📚 Recommended Problems")
@@ -206,12 +291,47 @@ st.dataframe(
     recommendations,
     width="stretch"
 )
+st.divider()
+
+
+# ==========================================
+# PROGRESS OVER TIME
+# ==========================================
+
+st.header("📈 Progress Over Time")
+
+if not history.empty:
+
+    history["date"] = pd.to_datetime(
+        history["date"]
+    )
+
+    chart_data = history[
+        ["date", "total_solved"]
+    ].set_index("date")
+
+    st.line_chart(chart_data)
+    latest = history.iloc[-1]
+
+    st.caption(
+        f"Latest Snapshot: {latest['total_solved']} problems solved"
+    )
+
+    st.write(
+        f"Snapshots Recorded: {len(history)}"
+    )
+
+else:
+
+    st.info(
+        "No historical progress data available yet."
+    )
 
 st.divider()
 
 
 # ==========================================
-# ROADMAP
+# STUDY ROADMAP
 # ==========================================
 
 st.header("🗺️ Study Roadmap")
@@ -222,47 +342,87 @@ with col1:
 
     st.subheader("Week 1")
 
-    for problem in roadmap["week_1"]:
+    for problem in roadmap.get("week_1", []):
         st.write(f"✅ {problem}")
 
 with col2:
 
     st.subheader("Week 2")
 
-    for problem in roadmap["week_2"]:
+    for problem in roadmap.get("week_2", []):
         st.write(f"✅ {problem}")
 
 with col3:
 
     st.subheader("Week 3")
 
-    for problem in roadmap["week_3"]:
+    for problem in roadmap.get("week_3", []):
         st.write(f"✅ {problem}")
 
 st.divider()
 
 
+
+
+
 # ==========================================
-# FUTURE ML SECTION
+# MODEL INFORMATION
 # ==========================================
 
-st.header("🤖 Future Rating Prediction")
+st.header("🧠 Model Information")
 
 st.info(
     """
-    This section will be powered by a Machine Learning model.
+    Model: Random Forest Regressor
 
-    Planned Features:
-    
-    • Estimated Contest Rating
-    
-    • Future Rating Projection
-    
-    • Growth Analysis
-    
-    • Personalized Improvement Suggestions
+    Training Samples: 1000
+
+    Features:
+    • Total Solved
+    • Easy Solved
+    • Medium Solved
+    • Hard Solved
+    • Strength Score
+    • Weakness Score
+
+    Output:
+    • Interview Readiness Score (0-100)
     """
 )
+
+st.divider()
+
+# ==========================================
+# PROJECT STATS
+# ==========================================
+
+st.header("📌 Project Statistics")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        "Problems Solved",
+        profile["total_solved"]
+    )
+
+with col2:
+    st.metric(
+        "Recommendations",
+        len(recommendations)
+    )
+
+with col3:
+    st.metric(
+        "History Records",
+        len(history)
+    )
+
+with col4:
+    st.metric(
+        "Readiness Score",
+        round(readiness["readiness_score"], 2)
+    )
 
 st.divider()
 
@@ -272,5 +432,5 @@ st.divider()
 # ==========================================
 
 st.caption(
-    "DSA Mentor Platform v1.0 | Built using Python, Pandas and Streamlit"
+    "DSA Mentor Platform v3.0 | Skill Analysis • Recommendations • Roadmap • Progress Tracking • ML Readiness Prediction"
 )

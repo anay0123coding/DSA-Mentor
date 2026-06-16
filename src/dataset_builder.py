@@ -1,7 +1,8 @@
 import pandas as pd
 
-from scraper import get_leetcode_profile, extract_stats
 
+from scraper import get_leetcode_profile, extract_stats
+from progress_tracker import append_progress
 
 def build_dataset(usernames):
     dataset = []
@@ -48,6 +49,9 @@ def main():
         df,
         "data/processed/leetcode_dataset.csv"
     )
+
+    # Update progress history
+    append_progress(df)
 
 
 if __name__ == "__main__":

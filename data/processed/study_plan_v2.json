@@ -1,0 +1,27 @@
+{
+    "Day 1": {
+        "Topic": "Design",
+        "Problem": "LFU Cache",
+        "Difficulty": "Hard"
+    },
+    "Day 2": {
+        "Topic": "Sliding Window",
+        "Problem": "Minimum Window Substring",
+        "Difficulty": "Hard"
+    },
+    "Day 3": {
+        "Topic": "Sliding Window",
+        "Problem": "Sliding Window Maximum",
+        "Difficulty": "Hard"
+    },
+    "Day 4": {
+        "Topic": "Two Pointers",
+        "Problem": "3Sum",
+        "Difficulty": "Medium"
+    },
+    "Day 5": {
+        "Topic": "Two Pointers",
+        "Problem": "Trapping Rain Water",
+        "Difficulty": "Hard"
+    }
+}

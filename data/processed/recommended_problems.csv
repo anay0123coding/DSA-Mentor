@@ -1,6 +1,6 @@
 title,difficulty,topic
-Merge Intervals,Medium,Intervals
-Longest Substring Without Repeating Characters,Medium,Sliding Window
-Number of Islands,Medium,Graph
-Course Schedule,Medium,Graph
-Kth Largest Element in Array,Medium,Heap
+3Sum,Medium,Two Pointers
+Trapping Rain Water,Hard,Two Pointers
+Minimum Window Substring,Hard,Sliding Window
+Sliding Window Maximum,Hard,Sliding Window
+LFU Cache,Hard,Design

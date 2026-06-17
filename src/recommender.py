@@ -1,88 +1,76 @@
 import pandas as pd
-import json
 
+# ==========================
+# Load files
+# ==========================
 
-def load_profile():
+topic_df = pd.read_csv(
+    "data/processed/topic_analysis.csv"
+)
 
-    with open(
-        "data/processed/user_profile.json",
-        "r"
-    ) as file:
+problem_df = pd.read_csv(
+    "data/problem_bank.csv"
+)
 
-        return json.load(file)
+solved_df = pd.read_csv(
+    "data/processed/solved_problems.csv"
+)
 
+# ==========================
+# Solved titles
+# ==========================
 
-def load_problem_bank():
+solved_titles = set(
+    solved_df[
+        solved_df["solved"] == 1
+    ]["title"]
+)
 
-    return pd.read_csv(
-        "data/problem_bank.csv"
-    )
+# ==========================
+# 3 Weakest Topics
+# ==========================
 
+weak_topics = (
+    topic_df
+    .sort_values("SkillScore")
+    .head(3)["topic"]
+    .tolist()
+)
 
-def recommend_problems(profile, problems):
+print("Weakest Topics:")
+for topic in weak_topics:
+    print("-", topic)
 
-    level = profile["level"]
+# ==========================
+# Recommendations
+# ==========================
 
-    if level == "Beginner":
+recommendations = problem_df[
+    problem_df["topic"].isin(weak_topics)
+]
 
-        recommended = problems[
-            problems["difficulty"] == "Easy"
-        ]
+recommendations = recommendations[
+    ~recommendations["title"].isin(solved_titles)
+]
 
-    elif level == "Intermediate":
+recommendations = recommendations[
+    ["title", "difficulty", "topic"]
+]
 
-        recommended = problems[
-            problems["difficulty"] == "Medium"
-        ]
+recommendations = recommendations.head(5)
 
-    else:
+# ==========================
+# Save
+# ==========================
 
-        recommended = problems[
-            problems["difficulty"] == "Hard"
-        ]
+recommendations.to_csv(
+    "data/processed/recommended_problems.csv",
+    index=False
+)
 
-    return recommended.head(5)
+print("\nRecommended Problems:\n")
 
-
-def save_recommendations(df):
-
-    output_path = (
-        "data/processed/recommended_problems.csv"
-    )
-
-    df.to_csv(
-        output_path,
-        index=False
-    )
-
-    print(
-        f"\nRecommendations saved to: {output_path}"
-    )
-
-
-def main():
-
-    profile = load_profile()
-
-    problems = load_problem_bank()
-
-    recommendations = recommend_problems(
-        profile,
-        problems
-    )
-
-    print("\n===== RECOMMENDED PROBLEMS =====")
-
-    print(
-        recommendations[
-            ["title", "difficulty", "topic"]
-        ]
-    )
-
-    save_recommendations(
-        recommendations
-    )
-
-
-if __name__ == "__main__":
-    main()
+if recommendations.empty:
+    print("No unsolved problems found.")
+else:
+    print(recommendations)

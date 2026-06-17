@@ -280,7 +280,34 @@ for weakness in profile["weaknesses"]:
 
 st.divider()
 
+# ==========================================
+# TOPIC ANALYSIS
+# ==========================================
 
+topic_df = pd.read_csv(
+    "data/processed/topic_analysis.csv"
+)
+
+st.header("📊 Topic Analysis")
+
+st.dataframe(
+    topic_df,
+    width="stretch"
+)
+
+st.divider()
+
+# ==========================================
+# TOPIC SKILL SCORES
+# ==========================================
+
+st.header("🎯 Topic Skill Scores")
+
+st.bar_chart(
+    topic_df.set_index("topic")["SkillScore"]
+)
+
+st.divider()
 # ==========================================
 # RECOMMENDED PROBLEMS
 # ==========================================
@@ -293,7 +320,29 @@ st.dataframe(
 )
 st.divider()
 
+with open(
+    "data/processed/study_plan_v2.json",
+    "r"
+) as f:
+    plan = json.load(f)
 
+st.header("🗺️ Personalized Study Plan")
+
+for day, details in plan.items():
+
+    st.markdown(
+        f"""
+        **{day}**
+
+        Topic: {details['Topic']}
+
+        Problem: {details['Problem']}
+
+        Difficulty: {details['Difficulty']}
+        """
+    )
+
+    
 # ==========================================
 # PROGRESS OVER TIME
 # ==========================================
@@ -425,6 +474,8 @@ with col4:
     )
 
 st.divider()
+
+
 
 
 # ==========================================

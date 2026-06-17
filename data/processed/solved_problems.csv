@@ -1,0 +1,76 @@
+title,difficulty,topic,solved
+Two Sum,Easy,Array,1
+Valid Parentheses,Easy,Stack,1
+Binary Search,Easy,Binary Search,1
+Merge Intervals,Medium,Intervals,0
+Course Schedule,Medium,Graph,1
+Word Ladder,Hard,Graph,0
+Best Time to Buy and Sell Stock,Easy,Array,1
+Contains Duplicate,Easy,Array,1
+Product of Array Except Self,Medium,Array,0
+Maximum Subarray,Medium,Array,1
+3Sum,Medium,Two Pointers,0
+Container With Most Water,Medium,Two Pointers,1
+Trapping Rain Water,Hard,Two Pointers,0
+Longest Substring Without Repeating Characters,Medium,String,1
+Valid Anagram,Easy,String,1
+Group Anagrams,Medium,String,0
+Longest Palindromic Substring,Medium,String,1
+Min Stack,Medium,Stack,1
+Evaluate Reverse Polish Notation,Medium,Stack,0
+Daily Temperatures,Medium,Stack,1
+Largest Rectangle in Histogram,Hard,Stack,0
+Search a 2D Matrix,Medium,Binary Search,1
+Find Minimum in Rotated Sorted Array,Medium,Binary Search,1
+Search in Rotated Sorted Array,Medium,Binary Search,0
+Koko Eating Bananas,Medium,Binary Search,1
+Median of Two Sorted Arrays,Hard,Binary Search,0
+Longest Repeating Character Replacement,Medium,Sliding Window,1
+Minimum Window Substring,Hard,Sliding Window,0
+Sliding Window Maximum,Hard,Sliding Window,0
+Reverse Linked List,Easy,Linked List,1
+Merge Two Sorted Lists,Easy,Linked List,1
+Reorder List,Medium,Linked List,0
+Remove Nth Node From End of List,Medium,Linked List,1
+Copy List with Random Pointer,Medium,Linked List,0
+Linked List Cycle,Easy,Linked List,1
+Merge k Sorted Lists,Hard,Linked List,0
+Reverse Nodes in k-Group,Hard,Linked List,0
+Maximum Depth of Binary Tree,Easy,Tree,1
+Same Tree,Easy,Tree,1
+Invert Binary Tree,Easy,Tree,1
+Binary Tree Maximum Path Sum,Hard,Tree,0
+Binary Tree Level Order Traversal,Medium,Tree,1
+Serialize and Deserialize Binary Tree,Hard,Tree,0
+Lowest Common Ancestor of a BST,Medium,Tree,1
+Implement Trie (Prefix Tree),Medium,Trie,1
+Design Add and Search Words Data Structure,Medium,Trie,0
+Word Search II,Hard,Trie,0
+Top K Frequent Elements,Medium,Heap,1
+Find Median from Data Stream,Hard,Heap,0
+K Closest Points to Origin,Medium,Heap,1
+Subsets,Medium,Backtracking,1
+Combination Sum,Medium,Backtracking,1
+Permutations,Medium,Backtracking,0
+Word Search,Medium,Backtracking,1
+N-Queens,Hard,Backtracking,0
+Clone Graph,Medium,Graph,1
+Number of Islands,Medium,Graph,1
+Pacific Atlantic Water Flow,Medium,Graph,0
+Graph Valid Tree,Medium,Graph,1
+Alien Dictionary,Hard,Graph,0
+Climbing Stairs,Easy,Dynamic Programming,1
+Coin Change,Medium,Dynamic Programming,1
+Longest Increasing Subsequence,Medium,Dynamic Programming,0
+Longest Common Subsequence,Medium,Dynamic Programming,0
+Word Break,Medium,Dynamic Programming,1
+Edit Distance,Hard,Dynamic Programming,0
+House Robber,Medium,Dynamic Programming,1
+Decode Ways,Medium,Dynamic Programming,0
+Insert Interval,Medium,Intervals,1
+Non-overlapping Intervals,Medium,Intervals,0
+Meeting Rooms,Easy,Intervals,1
+Meeting Rooms II,Medium,Intervals,0
+Rotate Image,Medium,Math,1
+Spiral Matrix,Medium,Math,1
+Set Matrix Zeroes,Medium,Math,0

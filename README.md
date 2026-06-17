@@ -10,13 +10,14 @@ DSA Mentor Platform helps users evaluate their coding interview preparation by t
 
 The platform:
 
-* Collects and processes LeetCode problem-solving data
-* Performs skill analysis
-* Recommends practice problems
-* Generates personalized study roadmaps
-* Tracks progress over time
-* Predicts interview readiness using a Random Forest model
-* Visualizes results through an interactive Streamlit dashboard
+Collects and processes DSA problem-solving data
+Performs topic-wise skill analysis
+Identifies strengths and weaknesses
+Tracks progress over time
+Generates adaptive problem recommendations
+Creates personalized study plans based on weak topics
+Predicts interview readiness using Machine Learning
+Visualizes insights through an interactive Streamlit dashboard
 
 ---
 
@@ -51,6 +52,26 @@ The platform:
 * Predicts readiness score (0–100)
 * Categorizes users into readiness levels
 
+### 🎯 Topic-wise Skill Analysis
+
+- Calculates completion rate for every DSA topic
+- Generates topic skill scores
+- Identifies strongest and weakest topics
+- Provides explainable analytics
+
+### 🔥 Adaptive Recommendation Engine
+
+- Detects weakest topics automatically
+- Filters already solved problems
+- Recommends unsolved questions
+- Prioritizes improvement areas
+
+### 🗺️ Personalized Study Planner
+
+- Builds study plans from weak topics
+- Uses adaptive recommendations
+- Generates day-wise practice schedules
+
 ### 📊 Interactive Dashboard
 
 * User summary
@@ -65,22 +86,22 @@ The platform:
 ## 🏗️ Project Architecture
 
 ```text
-LeetCode Data
-      ↓
-Dataset Builder
-      ↓
+LeetCode Dataset
+        ↓
 Feature Engineering
-      ↓
+        ↓
 Skill Analysis
-      ↓
-Recommendation Engine
-      ↓
-Roadmap Generator
-      ↓
+        ↓
+Topic Analysis
+        ↓
+Adaptive Recommendation Engine
+        ↓
+Personalized Study Planner
+        ↓
 Progress Tracker
-      ↓
-ML Readiness Predictor
-      ↓
+        ↓
+Random Forest Readiness Predictor
+        ↓
 Streamlit Dashboard
 ```
 
@@ -279,19 +300,28 @@ streamlit run dashboard/app.py
 
 ---
 
+
 ## 🚀 Future Improvements
 
-* Topic-wise skill analysis
-* Dynamic Programming mastery tracking
-* Graph and Tree skill assessment
-* Adaptive recommendations
-* Contest performance analysis
-* User authentication
-* Cloud deployment
-* Real-time LeetCode integration
+- XGBoost-based readiness prediction
+- Contest performance analytics
+- Real-time LeetCode API integration
+- Multi-user support
+- User authentication
+- Cloud database integration
+- Advanced visualization with Plotly
+- LLM-powered interview preparation assistant
 
 ---
+## 🎓 Key Highlights
 
+- Built an end-to-end DSA analytics platform using Python and Machine Learning.
+- Developed an adaptive recommendation system based on topic-wise weaknesses.
+- Implemented a personalized study planner using recommendation outputs.
+- Trained a Random Forest model for interview readiness prediction.
+- Created an interactive Streamlit dashboard with real-time analytics.
+- Designed a modular data pipeline following software engineering best practices.
+- 
 ## 👨‍💻 Author
 
 Built as a Machine Learning + Data Engineering + Data Visualization project demonstrating:
